@@ -4,9 +4,11 @@ import Image from 'next/image'
 import Button, { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
 import { sizeTopBar } from '@/app/ui/size'
 import { useLayoutEffect, useRef } from 'react'
+import { useLive } from '@/app/components/contexts/LiveContext'
 
 const Menu = () => {
     const refNav = useRef<HTMLElement>(null)
+    const isLive = useLive()
 
     useLayoutEffect(() => {
         const handleScroll = () => {
@@ -51,15 +53,24 @@ const Menu = () => {
                             <Link href={'/playlist'}>Playlist</Link>
                         </Button>
                     </li>
-                    <li className={'flex h-full items-center justify-center'}>
-                        <Button
-                            bgColor={'link'}
-                            size={buttonSize.SM}
-                            direction={buttonDirection.NONE}
+                    {isLive && (
+                        <li
+                            className={
+                                'flex h-full items-center justify-center'
+                            }
                         >
-                            <Link href={'/direct'}>Direct</Link>
-                        </Button>
-                    </li>
+                            <Button
+                                bgColor={'link'}
+                                size={buttonSize.SM}
+                                direction={buttonDirection.NONE}
+                            >
+                                <span className={'text-rose-01 mr-2 text-lg'}>
+                                    •
+                                </span>
+                                <Link href={'/direct'}>Direct</Link>
+                            </Button>
+                        </li>
+                    )}
                 </ul>
             </div>
             <Image
