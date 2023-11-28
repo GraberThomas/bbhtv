@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Menu from '@/app/components/Menu/Menu'
+import Footer from '@/app/components/Footer'
 
 export const metadata: Metadata = {
     title: 'BBH',
@@ -17,6 +18,7 @@ export default function RootLayout({
             <body>
                 <Menu />
                 {children}
+                <Footer />
             </body>
         </html>
     )
