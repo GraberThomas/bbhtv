@@ -1,5 +1,24 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+
+Voici le travail fait pour 18H.
+J'ai conscience des problemes de mon code, notemment je n'ai pas eu le temps de bien implémenter la gestion des erreurs.
+
+De plus, j'ai commencé de la mauvaise maniere avec les fonts. 
+Je n'ai jamais integré de maquette professionnellement, et j'ai du apprendre sur le tas pour figma.
+J'ai compris que j'aurais du faire des classes Tailwind personnalisé pour factoriser les élémetnts de texte. ( ou des composants react directement.
+)
+
+
+
+
+
+
+
+
+
+
 ## Getting Started
 
 First, run the development server:

@@ -13,6 +13,8 @@ const config: Config = {
                 'gradient-conic':
                     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
                 'footer-bg': "url('/triskell_bbh_footer.svg')",
+                'gradient-back':
+                    'linear-gradient(180deg, rgba(0,0,0,0.007423037574404767) 60%, rgba(0,0,0,1) 100%)',
             },
             backgroundColor: {
                 'black-83': 'rgba(0,0,0,.83)',

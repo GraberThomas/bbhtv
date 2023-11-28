@@ -6,14 +6,12 @@ const Footer = () => {
     return (
         <footer
             className={
-                'bg-footer-bg flex h-[428px] flex-col items-center justify-center gap-16 bg-center bg-no-repeat'
+                'bg-footer-bg flex h-[428px] w-full flex-col items-center justify-center bg-center bg-no-repeat pt-[124px]'
             }
         >
             <div
                 id={'media_container'}
-                className={
-                    'mt-[124px] flex w-[424px] items-center justify-between'
-                }
+                className={'flex w-[424px] items-center justify-between'}
             >
                 <Image
                     src={'/media/facebook.svg'}

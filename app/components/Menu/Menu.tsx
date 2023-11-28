@@ -2,11 +2,13 @@ import Link from 'next/link'
 import { ibm_plex_sans_bold } from '@/app/ui/fonts/fonts'
 import Image from 'next/image'
 import Button, { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
+import { sizeTopBar } from '@/app/ui/size'
 
 const Menu = () => {
     return (
         <nav
-            className={`relative h-[86px] w-full bg-none ${ibm_plex_sans_bold} leading[22px] flex items-center text-sm text-white`}
+            className={`fixed z-[999] w-full bg-black ${ibm_plex_sans_bold} leading[22px] flex items-center text-sm text-white`}
+            style={{height: `${sizeTopBar}px`}}
         >
             <div className={'ml-[42px] mr-auto h-[32px]'}>
                 <ul className={'flex h-full gap-4 text-center'}>
