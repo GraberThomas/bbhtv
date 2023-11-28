@@ -1,13 +1,35 @@
+'use client'
 import Link from 'next/link'
 import Image from 'next/image'
 import Button, { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
 import { sizeTopBar } from '@/app/ui/size'
+import { useLayoutEffect, useRef } from 'react'
 
 const Menu = () => {
+    const refNav = useRef<HTMLElement>(null)
+
+    useLayoutEffect(() => {
+        const handleScroll = () => {
+            if (!refNav.current) return
+            if (window.scrollY > 0) {
+                refNav.current.style.backgroundColor = 'black'
+            } else {
+                refNav.current.style.backgroundColor = 'transparent'
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
     return (
         <nav
-            className={`fixed z-[999] flex w-full items-center bg-black`}
+            className={`fixed z-[999] flex w-full items-center bg-none transition-all duration-300`}
             style={{ height: `${sizeTopBar}px` }}
+            ref={refNav}
         >
             <div className={'ml-[42px] mr-auto h-[32px]'}>
                 <ul className={'flex h-full gap-4 text-center'}>
