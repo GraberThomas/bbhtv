@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Menu from '@/app/components/Menu/Menu'
 import Footer from '@/app/components/Footer'
-import { ibm_plex_sans_regular } from '@/app/ui/fonts/fonts'
+import { druk, ibm } from '@/app/ui/fonts/fonts'
 
 export const metadata: Metadata = {
     title: 'BBH',
@@ -15,10 +15,8 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en">
-            <body
-                className={`text-white ${ibm_plex_sans_regular.className} relative flex min-h-screen flex-col`}
-            >
+        <html lang="fr" className={`${ibm.variable} ${druk.variable}`}>
+            <body className={`relative flex min-h-screen flex-col text-white`}>
                 <Menu />
                 {children}
                 <Footer />

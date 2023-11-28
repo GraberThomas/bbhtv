@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <footer
             className={
-                'bg-footer-bg flex h-[428px] w-full flex-col items-center justify-center bg-center bg-no-repeat pt-[124px]'
+                'flex h-[428px] w-full flex-col items-center justify-center bg-footer-bg bg-center bg-no-repeat pt-[124px]'
             }
         >
             <div
@@ -57,23 +57,25 @@ const Footer = () => {
                 height={20}
                 className={'mt-[52px]'}
             />
-            <div
-                id={'mention'}
-                className={'text-gris-02 mb-[124px] mt-[52px] flex'}
-            >
+            <div id={'mention'} className={'mb-[124px] mt-[52px] flex'}>
                 <Button
                     direction={buttonDirection.NONE}
                     size={buttonSize.SM}
                     bgColor={'link'}
+                    className={''}
                 >
-                    <Link href={'#'}>Mention légales</Link>
+                    <Link href={'#'} className={'text-gris-02'}>
+                        Mention légales
+                    </Link>
                 </Button>
                 <Button
                     direction={buttonDirection.NONE}
                     size={buttonSize.SM}
                     bgColor={'link'}
                 >
-                    <Link href={'#'}>Site officiel</Link>
+                    <Link href={'#'} className={'text-gris-02'}>
+                        Site officiel
+                    </Link>
                 </Button>
             </div>
         </footer>

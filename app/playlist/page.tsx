@@ -7,7 +7,7 @@ const Page = async () => {
 
     return (
         <main
-            className={'mb-14 min-h-[calc(100vh-86px)] w-full'}
+            className={'mb-14 w-full'}
             style={{
                 minHeight: `calc(100vh-${sizeTopBar})`,
             }}

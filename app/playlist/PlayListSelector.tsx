@@ -3,11 +3,6 @@
 import { Playlist } from '@/app/libs/api/types/playlist'
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import {
-    druk_bold,
-    ibm_plex_sans_bold,
-    ibm_plex_sans_regular,
-} from '@/app/ui/fonts/fonts'
 import Image from 'next/image'
 import Button, { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
 import Link from 'next/link'
@@ -28,7 +23,6 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                 `https://api.brest.life/assets/${playlists[selectedPlaylist].cover}`
             )
             const blob = await response.blob()
-            console.log(URL.createObjectURL(blob))
             setImage(URL.createObjectURL(blob))
         }
         getImage()
@@ -37,11 +31,11 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
     return (
         <div className={'flex gap-1'}>
             <section
-                className={`relative w-full ${druk_bold.className} text-lg`}
+                className={`relative w-full`}
                 style={{ paddingTop: `${sizeTopBar + 70}px` }}
             >
                 <div className={'relative float-right pr-[43px]'}>
-                    <h2 className={'mb-[52px] text-lg uppercase'}>
+                    <h2 className={'drunkTitle4 mb-[52px] uppercase'}>
                         Toutes les playlists
                     </h2>
                     <div className={'h-[500px] overflow-y-scroll pr-12'}>
@@ -54,12 +48,15 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                                 return (
                                     <li
                                         key={index}
-                                        className={clsx('text-3xl text-white', {
-                                            'opacity-100':
-                                                selectedPlaylist === index,
-                                            'opacity-30':
-                                                selectedPlaylist !== index,
-                                        })}
+                                        className={clsx(
+                                            'drunkTitle2 text-white',
+                                            {
+                                                'opacity-100':
+                                                    selectedPlaylist === index,
+                                                'opacity-30':
+                                                    selectedPlaylist !== index,
+                                            }
+                                        )}
                                         onMouseOver={() =>
                                             setSelectedPlaylist(index)
                                         }
@@ -73,7 +70,7 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                     </div>
                     <div
                         className={
-                            'bg-gradient-back pointer-events-none absolute bottom-0 left-0 right-0 top-0 '
+                            'pointer-events-none absolute bottom-0 left-0 right-0 top-0 bg-gradient-back '
                         }
                     />
                 </div>
@@ -105,17 +102,13 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                         }
                     ></div>
                     <div className={'flex flex-col gap-[21px]'}>
-                        <h3
-                            className={`${ibm_plex_sans_bold} mt-[31px] text-2xl`}
-                        >
+                        <h3 className={`ibmTitle3 mt-[31px]`}>
                             {playlists[selectedPlaylist].title}
                         </h3>
-                        <span
-                            className={`${ibm_plex_sans_regular} text-base opacity-50`}
-                        >
+                        <span className={`textMdRegular opacity-50`}>
                             {playlists[selectedPlaylist].video.length} vidéos
                         </span>
-                        <p className={'line-clamp-4'}>
+                        <p className={'textSmRegular line-clamp-4 opacity-80'}>
                             {playlists[selectedPlaylist].description}
                         </p>
                         <Button
