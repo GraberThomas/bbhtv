@@ -1,7 +1,7 @@
 'use client'
 
 import { Playlist } from '@/app/libs/api/types/playlist'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Button, { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
@@ -17,6 +17,8 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
 
     const [image, setImage] = useState<string>('')
 
+    const refSectionToBackground = useRef<HTMLDivElement>(null)
+
     useEffect(() => {
         const getImage = async () => {
             const response = await fetch(
@@ -27,6 +29,12 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
         }
         getImage()
     }, [playlists, selectedPlaylist])
+
+    useEffect(() => {
+        if (refSectionToBackground.current) {
+            refSectionToBackground.current.style.backgroundImage = `url(${image})`
+        }
+    }, [image])
 
     return (
         <div className={'flex gap-1'}>
@@ -81,16 +89,22 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                     paddingTop: `${sizeTopBar + 70}px`,
                 }}
             >
-                <div className={'relative float-left w-[500px]'}>
-                    <Image
-                        src={image}
-                        alt={'test'}
-                        height={280}
-                        width={500}
+                <div className={'relative float-left ml-8 w-[500px]'}>
+                    <div
                         className={
-                            'shadow-playlist-shadow rotate relative z-50 rounded-3xl'
+                            'bg-ehh_champion relative z-50 h-[280px] w-full rounded-3xl bg-left'
                         }
-                    />
+                    >
+                        <Image
+                            src={image}
+                            alt={'test'}
+                            fill={true}
+                            style={{ objectFit: 'cover' }}
+                            className={
+                                'shadow-playlist-shadow absolute z-50 rounded-3xl'
+                            }
+                        />
+                    </div>
                     <div
                         className={
                             'absolute -top-[26px] z-10 h-60 w-full scale-x-[0.876] rounded-3xl bg-[#1F2629] '
@@ -125,7 +139,12 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                         </Button>
                     </div>
                 </div>
-                <div className={'absolute bottom-0 left-0 right-0 top-0'}></div>
+                <div
+                    className={
+                        'absolute bottom-0 left-0 right-0 top-0 opacity-25 blur-3xl'
+                    }
+                    ref={refSectionToBackground}
+                ></div>
             </section>
         </div>
     )

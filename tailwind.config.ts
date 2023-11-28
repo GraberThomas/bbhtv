@@ -16,6 +16,7 @@ const config: Config = {
                 'footer-bg': "url('/triskell_bbh_footer.svg')",
                 'gradient-back':
                     'linear-gradient(180deg, rgba(0,0,0,0.007423037574404767) 60%, rgba(0,0,0,1) 100%)',
+                ehh_champion: "url('/bandeau_ehf_champions_league.jpg')",
             },
             backgroundColor: {
                 'black-83': 'rgba(0,0,0,.83)',
