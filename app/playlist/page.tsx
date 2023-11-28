@@ -9,7 +9,7 @@ const Page = async () => {
         <main
             className={'mb-14 w-full'}
             style={{
-                minHeight: `calc(100vh-${sizeTopBar})`,
+                minHeight: `calc(100vh)`,
             }}
         >
             <PlayListSelector playlists={playlist} />
