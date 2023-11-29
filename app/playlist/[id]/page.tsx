@@ -52,7 +52,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                         bgColor={'blur'}
                         size={buttonSize.BASE}
                         direction={buttonDirection.LEFT}
-                        className={'w-fit'}
+                        className={'z-80 relative w-fit'}
                     >
                         Retour
                     </ReturnButton>
