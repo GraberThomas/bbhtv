@@ -6,7 +6,6 @@ import { Video } from '@/app/libs/api/types/videos'
 export async function fetchVideosOfPlaylist(
     playlist_id: number
 ): Promise<Video[]> {
-    console.log(`${playlistUrl}/${playlist_id}?fields[]=video.video_id.*`)
     return fetch(`${playlistUrl}/${playlist_id}?fields[]=video.video_id.*`, {
         headers: {
             'Content-Type': 'application/json',

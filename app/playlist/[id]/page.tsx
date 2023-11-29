@@ -2,11 +2,15 @@ import { sizeTopBar } from '@/app/ui/size'
 import { fetchVideosOfPlaylist } from '@/app/libs/api/video'
 import { Playlist } from '@/app/libs/api/types/playlist'
 import { FetchPlayList } from '@/app/libs/api/playlist'
-import { getTotalViewString } from '@/app/libs/utils/playlistInfo'
+import {
+    getDurationString,
+    getTotalViewString,
+} from '@/app/libs/utils/playlistInfo'
 import { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
 import ReturnButton from '@/app/components/button/returnButton'
 import Image from 'next/image'
 import { fetchOrGetLastCoverImage } from '@/app/libs/api/image'
+import { CardVideoLineXl } from '@/app/ui/cards/video/cardVideoLineXL'
 
 export default async function Page({ params }: { params: { id: string } }) {
     const play_list_id = Number.parseInt(params.id)
@@ -27,7 +31,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         >
             <section
                 className={
-                    'relative flex w-full flex-col px-[80pX] backdrop-blur-xl'
+                    'relative mb-[148px] flex w-full flex-col px-[80pX] backdrop-blur-xl'
                 }
                 style={{
                     paddingTop: `${sizeTopBar + 34}px`,
@@ -64,12 +68,12 @@ export default async function Page({ params }: { params: { id: string } }) {
                                 {playlist.title}
                             </h1>
                             <span className={'textLgRegular opacity-50'}>
-                                {getTotalViewString(videosOfPlaylist)}
+                                {getTotalViewString(videosOfPlaylist) + ' vues'}
                             </span>
                         </div>
                         <p
                             className={
-                                'text-gris-00 textLgRegular overflow-y-scroll'
+                                'textLgRegular overflow-y-scroll text-gris-00'
                             }
                         >
                             {playlist.description}
@@ -92,7 +96,32 @@ export default async function Page({ params }: { params: { id: string } }) {
                         />
                     </div>
                 </div>
-                <span></span>
+            </section>
+            <section className={'relative flex w-full flex-col px-[80pX]'}>
+                <span className={'textLgRegular mb-[32px] opacity-60'}>
+                    {videosOfPlaylist.length} vidéos
+                </span>
+                <ul className={'pr-40'}>
+                    {videosOfPlaylist.map((video) => {
+                        return (
+                            <li key={video.id} className={'mb-[60px]'}>
+                                <CardVideoLineXl
+                                    title={video.title}
+                                    date={video.date_published}
+                                    viewCount={`${getDurationString(
+                                        video.view_count
+                                    )} vues`}
+                                    like_count={`${getDurationString(
+                                        video.like_count
+                                    )}`}
+                                    description={video.description}
+                                    url={video.youtube_id}
+                                    cover={video.cover}
+                                />
+                            </li>
+                        )
+                    })}
+                </ul>
             </section>
         </main>
     )

@@ -8,6 +8,7 @@ import Button, { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
 import Link from 'next/link'
 import { sizeTopBar } from '@/app/ui/size'
 import { fetchOrGetImage } from '@/app/libs/api/image'
+import { useRouter } from 'next/navigation'
 
 type PlayListSelectorProps = {
     playlists: Playlist[]
@@ -19,6 +20,8 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
     const [image, setImage] = useState<string>('')
 
     const refSectionToBackground = useRef<HTMLDivElement>(null)
+
+    const router = useRouter()
 
     useEffect(() => {
         try {
@@ -57,7 +60,7 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                                     <li
                                         key={index}
                                         className={clsx(
-                                            'drunkTitle2 text-white',
+                                            'drunkTitle2 cursor-pointer text-white',
                                             {
                                                 'opacity-100':
                                                     selectedPlaylist === index,
@@ -68,6 +71,11 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                                         onMouseOver={() =>
                                             setSelectedPlaylist(index)
                                         }
+                                        onClick={() => {
+                                            router.push(
+                                                `/playlist/${playlist.id}`
+                                            )
+                                        }}
                                     >
                                         {playlist.title}
                                     </li>

@@ -9,6 +9,6 @@ export type Video = {
     duration: number
     view_count: number
     like_count: number
-    date_published: number
+    date_published: string
     playlist: number[]
 }
