@@ -1,10 +1,10 @@
-import Image from 'next/image'
-import Button, { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
+import { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
 import { EyeIcon, HandThumbUpIcon } from '@heroicons/react/20/solid'
 import { getDiffenceDate } from '@/app/libs/utils/playlistInfo'
 import React, { Suspense } from 'react'
 import { ImageOrVideo } from '@/app/components/ImageOrVideo/ImageOrVideo'
 import ImageLoading from '@/app/components/skeleton/imageLoading'
+import GoToButton from '@/app/components/button/goToButton'
 
 type CardVideoLineXlProps = {
     title: string
@@ -14,6 +14,7 @@ type CardVideoLineXlProps = {
     description: string
     url: string
     cover: string
+    id: string
 }
 
 export const CardVideoLineXl = ({
@@ -24,6 +25,7 @@ export const CardVideoLineXl = ({
     description,
     cover,
     url,
+    id,
 }: CardVideoLineXlProps) => {
     const postDay = getDiffenceDate(date)
     return (
@@ -75,14 +77,15 @@ export const CardVideoLineXl = ({
                 >
                     {description}
                 </p>
-                <Button
+                <GoToButton
                     bgColor={'blur'}
                     direction={buttonDirection.RIGHT}
                     size={buttonSize.BASE}
                     className={'w-fit'}
+                    href={`/video/${id}`}
                 >
                     Voir la vidéo
-                </Button>
+                </GoToButton>
             </div>
         </div>
     )

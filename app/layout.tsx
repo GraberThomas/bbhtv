@@ -7,7 +7,7 @@ import LiveContextProvider from '@/app/components/contexts/LiveContext'
 
 export const metadata: Metadata = {
     title: 'BBH',
-    description: 'Allow to navigate between playlist and videos of bbh.',
+    description: 'Allow to navigate between playlist and video of bbh.',
     icons: '/logo_bbh.svg',
 }
 

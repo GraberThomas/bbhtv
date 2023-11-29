@@ -83,7 +83,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                     <div className={'absolute bottom-0 right-0 h-fit w-[40%]'}>
                         <Image
                             src={lastCoverImage}
-                            alt={'Cover of last videos'}
+                            alt={'Cover of last video'}
                             width={0}
                             height={0}
                             sizes={'100vh'}
@@ -117,6 +117,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                                     description={video.description}
                                     url={video.youtube_id}
                                     cover={video.cover}
+                                    id={video.id}
                                 />
                             </li>
                         )
