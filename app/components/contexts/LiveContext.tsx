@@ -7,7 +7,8 @@ import {
     useEffect,
     useState,
 } from 'react'
-import { fetchIsLive } from '@/app/libs/api/dataFetch'
+
+import { fetchIsLive } from '@/app/libs/api/live'
 
 const LiveContext = createContext<boolean>(false)
 
@@ -16,7 +17,6 @@ const LiveContextProvider = ({ children }: PropsWithChildren) => {
 
     useEffect(() => {
         const refresh = setInterval(async () => {
-            console.log('refresh')
             try {
                 const live = await fetchIsLive()
                 setIsLive(live.is_live)

@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Button, { buttonDirection, buttonSize } from '@/app/ui/buttons/Button'
 import Link from 'next/link'
 import { sizeTopBar } from '@/app/ui/size'
+import { fetchOrGetImage } from '@/app/libs/api/image'
 
 type PlayListSelectorProps = {
     playlists: Playlist[]
@@ -20,14 +21,13 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
     const refSectionToBackground = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        const getImage = async () => {
-            const response = await fetch(
-                `https://api.brest.life/assets/${playlists[selectedPlaylist].cover}`
+        try {
+            fetchOrGetImage(playlists[selectedPlaylist].cover).then((res) =>
+                setImage(res)
             )
-            const blob = await response.blob()
-            setImage(URL.createObjectURL(blob))
+        } catch (e) {
+            console.log('ERROR')
         }
-        getImage()
     }, [playlists, selectedPlaylist])
 
     useEffect(() => {
@@ -92,7 +92,7 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                 <div className={'relative float-left ml-8 w-[500px]'}>
                     <div
                         className={
-                            'bg-ehh_champion relative z-50 h-[280px] w-full rounded-3xl bg-left'
+                            'relative z-50 h-[280px] w-full rounded-3xl bg-ehh_champion bg-left'
                         }
                     >
                         <Image
@@ -141,7 +141,7 @@ const PlayListSelector = ({ playlists }: PlayListSelectorProps) => {
                 </div>
                 <div
                     className={
-                        'absolute bottom-0 left-0 right-0 top-0 opacity-25 blur-3xl'
+                        'pointer-events-none absolute bottom-0 left-0 right-0 top-0 opacity-25 blur-3xl'
                     }
                     ref={refSectionToBackground}
                 ></div>

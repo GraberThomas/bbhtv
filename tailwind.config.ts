@@ -24,6 +24,7 @@ const config: Config = {
             textColor: {
                 'gris-02': '#7E7A7B',
                 'rose-01': '#FF11AA',
+                'gris-00': '#E2E2E2',
             },
         },
     },

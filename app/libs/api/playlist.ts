@@ -1,15 +1,9 @@
 'use server'
 
 import { Playlist } from '@/app/libs/api/types/playlist'
-import { IsLiveReturnAPI } from '@/app/libs/api/types/live'
+import { playlistUrl } from '@/app/libs/api/urls'
 
-const url = process.env.API_URL
-const url_api_live = process.env.API_LIVE_URL
-if (url === undefined) throw new Error('API_URL is not defined')
-if (url_api_live === undefined) throw new Error('API_URL is not defined')
-const playlistUrl = url + '/items/playlist/'
-
-export async function getPlaylist(page: number): Promise<Playlist[]> {
+async function fetchPlaylistPage(page: number): Promise<Playlist[]> {
     return fetch(`${playlistUrl}?page=${page}`, {
         headers: {
             'Content-Type': 'application/json',
@@ -22,12 +16,12 @@ export async function getPlaylist(page: number): Promise<Playlist[]> {
         })
 }
 
-export async function getAllPlaylist(): Promise<Playlist[]> {
+export async function fetchAllPlaylist(): Promise<Playlist[]> {
     let playlists: Playlist[] = []
     let page = 1
     let again = true
     do {
-        let newPlaylist = await getPlaylist(page)
+        let newPlaylist = await fetchPlaylistPage(page)
         if (newPlaylist.length < 100) {
             again = false
         }
@@ -36,15 +30,15 @@ export async function getAllPlaylist(): Promise<Playlist[]> {
     return playlists
 }
 
-export const fetchIsLive = async () => {
-    return fetch(playlistUrl, {
+export async function FetchPlayList(id: number): Promise<Playlist> {
+    return fetch(`${playlistUrl}/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
         },
     })
-        .then((res: Response) => res.json())
+        .then((res) => res.json())
         .then((data) => {
-            return data as IsLiveReturnAPI
+            return data.data as Playlist
         })
 }

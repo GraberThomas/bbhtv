@@ -1,9 +1,8 @@
-import { getAllPlaylist } from '@/app/libs/api/dataFetch'
+import { fetchAllPlaylist } from '@/app/libs/api/playlist'
 import PlayListSelector from '@/app/playlist/PlayListSelector'
-import { sizeTopBar } from '@/app/ui/size'
 
 const Page = async () => {
-    const playlist = await getAllPlaylist()
+    const playlist = await fetchAllPlaylist()
 
     return (
         <main
