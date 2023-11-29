@@ -14,7 +14,7 @@ export enum buttonSize {
     XL,
 }
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     bgColor: 'lightTransparent' | 'white' | 'blur' | 'link'
     direction: buttonDirection
     size: buttonSize
